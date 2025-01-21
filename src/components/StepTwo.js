@@ -4,7 +4,7 @@ const StepTwo = (props) => {
   const { nextStep, backStep } = props;
   return (
     <div>
-      StepOne <button onClick={nextStep}>next</button>
+      Step2 <button onClick={nextStep}>next</button>
       <button onClick={backStep}>back</button>{" "}
     </div>
   );

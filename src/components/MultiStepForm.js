@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import FinshedForm from "./FinshedForm";
+import FinshedForm from "./FinishedForm";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
