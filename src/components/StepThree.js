@@ -1,10 +1,22 @@
 import React from "react";
-import ChevronRightIcon from "../svg/chevron_right"
+import { useState } from "react";
 import Input from "./Input";
+import ChevronRightIcon from "../svg/chevron_right";
+const StepThree = ({ nextStep }) => {
+  const [text, setText] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [image, setImage] = useState(null);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
 
-const StepThree = (props) => {
-  const { nextStep, backStep } = props;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div
       className="h-screen w-full flex justify-center items-center"
@@ -22,9 +34,39 @@ const StepThree = (props) => {
             </p>
           </div>
           <div className=" w-[416px] h-[228px] flex flex-col justify-between">
-            <Input label={"First Name"} placeholder={"Your First Name"} />
-            <Input label={"Last Name"} placeholder={"Your Last Name"} />
-            <Input label={"Username"} placeholder={"Your Username"} />
+            <div>
+              <label
+                htmlFor="birthDate"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Төрсөн огноо:
+              </label>
+              <input
+                id="birthDate"
+                type="date"
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              />
+            </div>
+
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="mt-1 block w-[416px] h-[300px] "
+            />
+
+            {image && (
+              <div className="mt-4">
+                <img
+                  src={image}
+                  alt="Preview"
+                  className="w-full h-48 object-cover rounded-md"
+                />
+              </div>
+            )}
           </div>
         </div>
         <button

@@ -14,6 +14,7 @@ export default {
         customGray:'#8E8E8E',
         customname:'#334155',
         custom1:'#E14942',
+        customborder:'#CBD5E1',
       },
     },
   },

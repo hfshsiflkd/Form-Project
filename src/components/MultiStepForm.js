@@ -1,35 +1,33 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import FinshedForm from "./FinishedForm";
+import FinishedForm from "./FinishedForm";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const Steps = [StepOne,StepTwo,StepThree,FinshedForm][currentStep]
+  const steps = [StepOne, StepTwo, StepThree, FinishedForm];
+
+  const CurrentStepComponent = steps[currentStep];
 
   const nextStep = () => {
-    if (currentStep !== 3) {
+    if (currentStep < steps.length - 1) {
       setCurrentStep((prevStep) => prevStep + 1);
     }
-    
-    
   };
 
   const backStep = () => {
-    if (currentStep !== 0) {
-    setCurrentStep((prevStep) => prevStep - 1);
+    if (currentStep > 0) {
+      setCurrentStep((prevStep) => prevStep - 1);
     }
   };
 
-  
-
   return (
     <div>
-     <Steps nextStep = {nextStep} backStep={backStep} />
+      <CurrentStepComponent nextStep={nextStep} backStep={backStep} />
     </div>
   );
 };
