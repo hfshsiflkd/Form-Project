@@ -16,6 +16,7 @@ const MultiStepForm = () => {
       setCurrentStep((prevStep) => prevStep + 1);
     }
     
+    
   };
 
   const backStep = () => {
