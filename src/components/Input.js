@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
-const InputWithValidation = ({label,placeholder}) => {
-  const [inputValue, setInputValue] = useState(""); // Input талбарын утга
-  const [error, setError] = useState(false); // Алдааны төлөв
+const InputWithValidation = ({ label, placeholder ,errors , fromValue , handleError , setFormValue  }) => {
+  const [inputValue, setInputValue] = useState("");
+  const [error, setError] = useState(false);
 
-  const handleBlur = () => {
-    if (inputValue.trim() === "") {
-      setError(true); // Хоосон үед алдааны төлөвийг true болгоно
-    } else {
-      setError(false); // Зөв бөглөсөн үед алдааг арилгана
-    }
-  };
+  // const handleError = () => {
+  //   if (inputValue.trim() === "") {
+  //     setError(true);
+  //   } else {
+  //     setError(false); 
+  //   }
+  // };
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
     if (e.target.value.trim() !== "") {
-      setError(false); // Input талбарт утга оруулахад алдааг арилгана
+      setError(false); 
     }
   };
 
@@ -26,19 +26,15 @@ const InputWithValidation = ({label,placeholder}) => {
       </label>
       <input
         type="text"
-        value={inputValue}
+        // value={inputValue}
         onChange={handleChange}
-        onBlur={handleBlur}
+        // onBlur={handleError}
         placeholder={placeholder}
         className={`border ${
           error ? "border-red-500" : "border-gray-300"
-        } rounded p-2 focus:outline-none focus:ring-2 ${
-          error ? "focus:ring-red-500" : "focus:ring-blue-500"
-        }`}
+        } rounded p-2 focus:outline-none focus:ring-2 `}
       />
-      {error && (
-        <p className="text-red-500 text-sm">This field is required.</p>
-      )}
+      {error && <p className="text-red-500 text-sm">This field is required.</p>}
     </div>
   );
 };

@@ -1,9 +1,14 @@
+
 import React from "react";
 import ChevronRightIcon from "../svg/chevron_right"
 import Input from "./Input";
 
 const StepOne = (props) => {
-  const { nextStep, backStep } = props;
+  const { nextStep, errors , fromValue , handleError , setFormValue  } = props;
+  const error =false ;
+  const handleChange = (event)=> {
+
+  }
   return (
     <div
       className="h-screen w-full flex justify-center items-center"

@@ -1,22 +1,11 @@
-import React from "react";
 import { useState } from "react";
 import Input from "./Input";
-import ChevronRightIcon from "../svg/chevron_right";
-const StepThree = ({ nextStep }) => {
-  const [text, setText] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [image, setImage] = useState(null);
+import ChevronRightIcon from "@/svg/chevron_right";
+import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+const StepThree = ({ nextStep , backStep}) => {
+  
+  
   return (
     <div
       className="h-screen w-full flex justify-center items-center"
@@ -34,48 +23,25 @@ const StepThree = ({ nextStep }) => {
             </p>
           </div>
           <div className=" w-[416px] h-[228px] flex flex-col justify-between">
-            <div>
-              <label
-                htmlFor="birthDate"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Төрсөн огноо:
-              </label>
-              <input
-                id="birthDate"
-                type="date"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-              />
-            </div>
+            
 
-            <input
-              id="image"
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="mt-1 block w-[416px] h-[300px] "
-            />
-
-            {image && (
-              <div className="mt-4">
-                <img
-                  src={image}
-                  alt="Preview"
-                  className="w-full h-48 object-cover rounded-md"
-                />
-              </div>
-            )}
           </div>
         </div>
-        <button
-          className="w-[416px] h-[44px] mt-[162px] flex p-[12px] justify-center items-center rounded bg-black text-white "
-          onClick={nextStep}
-        >
-          {" "}
-          Continue 3/3 <ChevronRightIcon />
-        </button>
+
+        <div className="w-[416px] h-[44px] mt-[82px] flex justify-between">
+          <button
+            className="w-[128px] h-[44px]  flex p-[12px] justify-center items-center rounded bg-white text-black border-blue hover:opacity-75 border border-customborder  "
+            onClick={backStep}
+          >
+            <ChevronLefttIcon /> Back
+          </button>
+          <button
+            className="w-[280px] h-[44px]  flex p-[12px] justify-center items-center rounded bg-black text-white hover:opacity-75 "
+            onClick={nextStep}
+          >
+            Continue 3/3 <ChevronRightIcon />
+          </button>
+        </div>
       </div>
     </div>
   );
