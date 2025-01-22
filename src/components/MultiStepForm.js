@@ -49,15 +49,14 @@ const MultiStepForm = () => {
 
   return (
     <div>
-      {/* <CurrentStepComponent
+      <CurrentStepComponent
         nextStep={nextStep}
         backStep={backStep}
         handleError={handleError}
         errors={formError}
         formValue={formValue}
         setFormValue={setFormValue}
-        
-      /> */}
+      />
     </div>
   );
 };
