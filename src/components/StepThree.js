@@ -3,9 +3,7 @@ import Input from "./Input";
 import ChevronRightIcon from "@/svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 
-const StepThree = ({ nextStep , backStep}) => {
-  
-  
+const StepThree = ({ nextStep, backStep }) => {
   return (
     <div
       className="h-screen w-full flex justify-center items-center"
@@ -22,10 +20,7 @@ const StepThree = ({ nextStep , backStep}) => {
               Please provide all current information accurately.
             </p>
           </div>
-          <div className=" w-[416px] h-[228px] flex flex-col justify-between">
-            
-
-          </div>
+          <div className=" w-[416px] h-[228px] flex flex-col justify-between"></div>
         </div>
 
         <div className="w-[416px] h-[44px] mt-[82px] flex justify-between">

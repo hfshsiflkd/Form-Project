@@ -27,12 +27,16 @@ const MultiStepForm = () => {
     password: "",
     confirmPassword: "",
     dateBirth: "",
-    profileImg: "",
-  });
-  const handleError = (errors) => (prev) => ({ ...prev, errors });
+    profileImg: "", 
+  }
+    
+  );
+
+  const handleError = (errors) => {
+    setFormError((prev) => ({ ...prev, ...errors }));
+  };
 
   const steps = [StepOne, StepTwo, StepThree, FinishedForm];
-
   const CurrentStepComponent = steps[currentStep];
 
   const nextStep = () => {
@@ -56,6 +60,7 @@ const MultiStepForm = () => {
         errors={formError}
         formValue={formValue}
         setFormValue={setFormValue}
+        setFormError={setFormError}
       />
     </div>
   );
