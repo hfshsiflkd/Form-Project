@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState  , useEffect} from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 import FinishedForm from "./FinishedForm";
+
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -50,6 +51,12 @@ const MultiStepForm = () => {
       setCurrentStep((prevStep) => prevStep - 1);
     }
   };
+  useEffect(()=>{
+    let data =localStorage.getItem('formData');
+    data = JSON.parse(data);
+    console.log(data);
+    
+  },[] );
 
   return (
     <div>
@@ -61,6 +68,7 @@ const MultiStepForm = () => {
         formValue={formValue}
         setFormValue={setFormValue}
         setFormError={setFormError}
+        currentStep={currentStep}
       />
     </div>
   );

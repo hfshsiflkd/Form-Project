@@ -10,6 +10,7 @@ const StepOne = (props) => {
     handleError,
     setFormValue,
     setFormError,
+    currentStep
   } = props;
 
   const handleChange = (event) => {
@@ -31,10 +32,16 @@ const StepOne = (props) => {
   const handleFormNextStep = () => {
     const { isValid, errors } = IsStepOneValid(formValue);
     if (isValid) {
+      const localData = {
+        ...formValue,
+        currentStep:1
+      }
+      localStorage.setItem('formData', JSON.stringify(localData))
+
       nextStep();
-    } else {
+    }  
       handleError(errors);
-    }
+    
   };
 
   const IsStepOneValid = (data) => {
