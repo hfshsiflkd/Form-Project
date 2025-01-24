@@ -15,6 +15,7 @@ export default {
         customname:'#334155',
         custom1:'#E14942',
         customborder:'#CBD5E1',
+        customimgborder:'#7F7F800D'
       },
     },
   },
