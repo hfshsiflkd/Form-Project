@@ -1,6 +1,7 @@
 import React from "react";
 import ChevronRightIcon from "../svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
+import Input from "./Input";
 
 const StepTwo = (props) => {
   const {
@@ -38,7 +39,7 @@ const StepTwo = (props) => {
     }
   };
   const IsStepOneValid = (data) => {
-    const { email, phoneNumber, password , confirmPassword } = data;
+    const { email, phoneNumber, password, confirmPassword } = data;
     const errors = {};
     let isValid = true;
     const emailChecker = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -60,9 +61,9 @@ const StepTwo = (props) => {
     }
     const minLength = 8;
     const maxLength = 20;
-    const uppercaseChecker = /[A-Z]/; 
-    const lowercaseChecker = /[a-z]/; 
-    const numberChecker = /\d/; 
+    const uppercaseChecker = /[A-Z]/;
+    const lowercaseChecker = /[a-z]/;
+    const numberChecker = /\d/;
 
     if (!password || password.length < minLength) {
       errors.password = `Password must be at least ${minLength} characters long.`;
@@ -79,12 +80,11 @@ const StepTwo = (props) => {
     } else if (!numberChecker.test(password)) {
       errors.password = "Password must include at least one number.";
       isValid = false;
-    } 
+    }
     if (password && confirmPassword !== password) {
       errors.confirmPassword = "Passwords do not match. Please try again";
       isValid = false;
     }
-  
 
     return { isValid, errors };
   };
@@ -94,7 +94,7 @@ const StepTwo = (props) => {
       style={{ backgroundColor: "#F4F4F4", color: "#000" }}
     >
       <div className="h-auto w-[480px] p-[32px] bg-white rounded-lg">
-        <div className=" w-[416px] flex justify-between flex-col">
+        <div className=" w-[416px] h-auto flex justify-between flex-col">
           <div className=" w-[416px] h-[129px] flex flex-col justify-between items-start ">
             <img src="./img/Logo.png" className="w-[60px] h-[60px]" />
             <h1 className="text-customblack font-semibold leading-normal text-2xl">
@@ -104,79 +104,45 @@ const StepTwo = (props) => {
               Please provide all current information accurately.
             </p>
           </div>
-          <div className=" w-[416px] h-[309px] flex flex-col justify-between mt-[30px]">
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                Email <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formValue.email}
-                onChange={handleChange}
-                placeholder="Enter your first name"
-                className={`border ${
-                  errors?.email ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
-              )}
-            </div>
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                PhoneNumber <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="phoneNumber"
-                name="phoneNumber"
-                value={formValue.phoneNumber}
-                onChange={handleChange}
-                placeholder="Enter your first name"
-                className={`border ${
-                  errors?.phoneNumber ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.phoneNumber && (
-                <p className="text-red-500 text-sm">{errors.phoneNumber}</p>
-              )}
-            </div>
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                Password <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                value={formValue.password}
-                onChange={handleChange}
-                placeholder="Enter your Password"
-                className={`border ${
-                  errors?.password ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.password && (
-                <p className="text-red-500 text-sm">{errors.password}</p>
-              )}
-            </div>
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-              Confirm Password <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="Password"
-                name="confirmPassword"
-                value={formValue.confirmPassword}
-                onChange={handleChange}
-                placeholder="Enter your Password"
-                className={`border ${
-                  errors?.confirmPassword ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.confirmPassword && (
-                <p className="text-red-500 text-sm">{errors.confirmPassword}</p>
-              )}
-            </div>
+          <div className=" w-[416px] h-auto gap-[5px] flex flex-col justify-between mt-[30px]">
+            <Input
+              label="Email"
+              name="email"
+              value={formValue.email}
+              onChange={handleChange}
+              placeholder="Enter your Email"
+              error={errors.email}
+              required
+            />
+            <Input
+              label="PhoneNumber"
+              name="phoneNumber"
+              value={formValue.phoneNumber}
+              onChange={handleChange}
+              placeholder="Enter your PhoneNumber"
+              error={errors.phoneNumber}
+              required
+            />
+            <Input
+              label="Password"
+              name="password"
+              value={formValue.password}
+              onChange={handleChange}
+              placeholder="Enter your Password"
+              error={errors.password}
+              required
+              type="password"
+            />
+            <Input
+              label="confirmPassword"
+              name="confirmPassword"
+              value={formValue.confirmPassword}
+              onChange={handleChange}
+              placeholder="Enter your ConfirmPassword"
+              error={errors.confirmPassword}
+              required
+              type="password"
+            />
           </div>
         </div>
 

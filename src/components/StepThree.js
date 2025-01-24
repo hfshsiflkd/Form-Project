@@ -3,7 +3,8 @@ import Input from "./Input";
 import ChevronRightIcon from "@/svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 
-const StepThree = ({ nextStep, backStep }) => {
+const StepThree = (props) => {
+  const {backStep , nextStep} = props
   return (
     <div
       className="h-screen w-full flex justify-center items-center"

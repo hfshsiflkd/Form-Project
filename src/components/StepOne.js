@@ -47,14 +47,16 @@ const StepOne = (props) => {
       errors.firstName = "First name must be at least 2 characters long.";
       isValid = false;
     } else if (!onlyLettersRegex.test(firstName)) {
-      errors.firstName = "First name cannot contain special characters or numbers.";
+      errors.firstName =
+        "First name cannot contain special characters or numbers.";
       isValid = false;
     }
     if (!lastName || lastName.length < 1) {
       errors.lastName = "Last name must be at least 2 characters long.";
       isValid = false;
     } else if (!onlyLettersRegex.test(lastName)) {
-      errors.lastName = "Last name cannot contain special characters or numbers.";
+      errors.lastName =
+        "Last name cannot contain special characters or numbers.";
       isValid = false;
     }
     if (!userName || userName.length < 2) {
@@ -71,7 +73,7 @@ const StepOne = (props) => {
       style={{ backgroundColor: "#F4F4F4", color: "#000" }}
     >
       <div className="h-auto w-[480px] p-[32px] bg-white rounded-lg">
-        <div className="w-[416px] h-[385px] flex justify-between flex-col">
+        <div className="w-[416px] h-auto flex justify-between flex-col">
           <div className="w-[416px] h-[129px] flex flex-col justify-between items-start">
             <img
               src="./img/Logo.png"
@@ -85,61 +87,34 @@ const StepOne = (props) => {
               Please provide all current information accurately.
             </p>
           </div>
-          <div className="w-[416px] h-[228px] flex flex-col justify-between">
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                First Name <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="firstName"
-                value={formValue.firstName}
-                onChange={handleChange}
-                placeholder="Enter your first name"
-                className={`border ${
-                  errors?.firstName ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.firstName && (
-                <p className="text-red-500 text-sm">{errors.firstName}</p>
-              )}
-            </div>
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                Last Name <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                value={formValue.lastName}
-                onChange={handleChange}
-                placeholder="Enter your first name"
-                className={`border ${
-                  errors?.lastName ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.lastName && (
-                <p className="text-red-500 text-sm">{errors.lastName}</p>
-              )}
-            </div>
-            <div className="w-[416px] flex flex-col justify-between space-y-2">
-              <label className="flex text-sm text-gray-700 font-semibold">
-                UserName <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="userName"
-                value={formValue.userName}
-                onChange={handleChange}
-                placeholder="Enter your first name"
-                className={`border ${
-                  errors?.userName ? "border-red-500" : "border-gray-300"
-                } rounded p-2 focus:outline-none focus:ring-2`}
-              />
-              {errors?.userName && (
-                <p className="text-red-500 text-sm">{errors.userName}</p>
-              )}
-            </div>
+          <div className="w-[416px] h-auto mt-[20px] gap-[10px]  flex flex-col justify-between">
+            <Input
+              label="First Name"
+              name="firstName"
+              value={formValue.firstName}
+              onChange={handleChange}
+              placeholder="Enter your first name"
+              error={errors.firstName}
+              required
+            />
+            <Input
+              label="Last Name"
+              name="lastName"
+              value={formValue.lastName}
+              onChange={handleChange}
+              placeholder="Enter your Last name"
+              error={errors.lastName}
+              required
+            />
+            <Input
+              label="Username"
+              name="userName"
+              value={formValue.userName}
+              onChange={handleChange}
+              placeholder="Enter your Username"
+              error={errors.userName}
+              required
+            />
           </div>
         </div>
 
