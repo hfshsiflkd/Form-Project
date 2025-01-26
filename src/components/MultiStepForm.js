@@ -7,7 +7,7 @@ import FinishedForm from "./FinishedForm";
 
 
 const MultiStepForm = () => {
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formValue, setFormValue] = useState({
     firstName: "",
     lastName: "",
