@@ -182,6 +182,7 @@ const StepThree = (props) => {
                     width={416}
                     height={180}
                   />
+                  
                 </div>
               )}
             </div>
