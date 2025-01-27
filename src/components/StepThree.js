@@ -3,8 +3,8 @@ import Input from "./Input";
 import ChevronRightIcon from "@/svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 import Image from "next/image";
+import Delete from "@/svg/delete";
 import { useEffect } from "react";
-
 
 const StepThree = (props) => {
   const {
@@ -19,12 +19,12 @@ const StepThree = (props) => {
 
   const [SelectedImg, setSelectedImg] = useState([]);
   const [DeleteImg, setDeleteImg] = useState([]);
-   useEffect(() => {
-      const storedData = JSON.parse(localStorage.getItem("formData"));
-      if (storedData) {
-        setFormValue(storedData);
-      }
-    },[setFormValue]);
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("formData"));
+    if (storedData) {
+      setFormValue(storedData);
+    }
+  }, [setFormValue]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -101,6 +101,14 @@ const StepThree = (props) => {
     }
 
     return { isValid, errors };
+  };
+  const handleDelete = () => {
+    const confirmDelete = window.confirm(
+      "Та энэ зургийг устгахдаа итгэлтэй байна уу?"
+    );
+    if (confirmDelete) {
+      setSelectedImg(0);
+    }
   };
 
   return (
@@ -183,7 +191,7 @@ const StepThree = (props) => {
                   )}
                 </div>
               ) : (
-                <div>
+                <div className="relative">
                   <Image
                     src={SelectedImg}
                     alt="uploaded file"
@@ -191,7 +199,11 @@ const StepThree = (props) => {
                     width={416}
                     height={180}
                   />
-                  
+                  <div className="absolute top-[10px] right-[10px]">
+                    <button onClick={handleDelete}>
+                      <Delete />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

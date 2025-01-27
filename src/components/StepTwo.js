@@ -2,7 +2,9 @@ import React from "react";
 import ChevronRightIcon from "../svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 import Input from "./Input";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CloseEye from "../svg/Eye";
+import Eye from "../svg/visible-opened-eye-interface-option-svgrepo-com";
 
 const StepTwo = (props) => {
   const {
@@ -14,12 +16,14 @@ const StepTwo = (props) => {
     setFormError,
     backStep,
   } = props;
-   useEffect(() => {
-      const storedData = JSON.parse(localStorage.getItem("formData"));
-      if (storedData) {
-        setFormValue(storedData);
-      }
-    },[setFormValue]);
+  const [passwordVisible, setpasswordVisable] = useState(false);
+  const [confirmPasswordVisable, setConfirmPasswordVisable] = useState(false);
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem("formData"));
+    if (storedData) {
+      setFormValue(storedData);
+    }
+  }, [setFormValue]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,9 +46,9 @@ const StepTwo = (props) => {
     if (isValid) {
       const localData = {
         ...formValue,
-        currentStep:1
-      }
-      localStorage.setItem('formData', JSON.stringify(localData))
+        currentStep: 1,
+      };
+      localStorage.setItem("formData", JSON.stringify(localData));
       nextStep();
     } else {
       handleError(errors);
@@ -100,6 +104,13 @@ const StepTwo = (props) => {
 
     return { isValid, errors };
   };
+
+  const togglePasswordVisibility = () => {
+    setpasswordVisable((prev) => !prev);
+  };
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmPasswordVisable((prev) => !prev);
+  };
   return (
     <div
       className="h-screen w-full flex justify-center items-center"
@@ -135,16 +146,26 @@ const StepTwo = (props) => {
               error={errors.phoneNumber}
               required
             />
-            <Input
-              label="Password"
-              name="password"
-              value={formValue.password}
-              onChange={handleChange}
-              placeholder="Enter your Password"
-              error={errors.password}
-              required
-              type="password"
-            />
+            <div className="relative">
+              <Input
+                label="Password"
+                name="password"
+                value={formValue.password}
+                onChange={handleChange}
+                placeholder="Enter your Password"
+                error={errors.password}
+                required
+                type={passwordVisible ? "text" : "password"}
+              />
+              <span
+                onClick={togglePasswordVisibility}
+                className=" absolute top-[40px] right-[10px]  cursor-pointer w-[20px] h-[20px]"
+              >
+                {passwordVisible ? < Eye/> : <CloseEye />}
+              </span>
+            </div>
+
+            <div className="relative">
             <Input
               label="confirmPassword"
               name="confirmPassword"
@@ -153,8 +174,15 @@ const StepTwo = (props) => {
               placeholder="Enter your ConfirmPassword"
               error={errors.confirmPassword}
               required
-              type="password"
+              type={confirmPasswordVisable ? "confirmPassword" : "Password"}
             />
+            <span
+              onClick={toggleConfirmPasswordVisibility}
+              className=" absolute top-[40px] right-[10px]  cursor-pointer w-[20px] h-[20px]"
+            >
+              {confirmPasswordVisable ? < Eye/> : <CloseEye />}
+            </span>
+            </div>
           </div>
         </div>
 
