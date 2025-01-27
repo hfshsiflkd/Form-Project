@@ -3,6 +3,8 @@ import Input from "./Input";
 import ChevronRightIcon from "@/svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 import Image from "next/image";
+import { useEffect } from "react";
+
 
 const StepThree = (props) => {
   const {
@@ -14,8 +16,15 @@ const StepThree = (props) => {
     setFormError,
     backStep,
   } = props;
+
   const [SelectedImg, setSelectedImg] = useState([]);
   const [DeleteImg, setDeleteImg] = useState([]);
+   useEffect(() => {
+      const storedData = JSON.parse(localStorage.getItem("formData"));
+      if (storedData) {
+        setFormValue(storedData);
+      }
+    },[setFormValue]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

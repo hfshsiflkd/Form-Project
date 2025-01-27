@@ -2,6 +2,7 @@ import React from "react";
 import ChevronRightIcon from "../svg/chevron_right";
 import ChevronLefttIcon from "@/svg/ChevronLefttIcon";
 import Input from "./Input";
+import { useEffect } from "react";
 
 const StepTwo = (props) => {
   const {
@@ -13,6 +14,12 @@ const StepTwo = (props) => {
     setFormError,
     backStep,
   } = props;
+   useEffect(() => {
+      const storedData = JSON.parse(localStorage.getItem("formData"));
+      if (storedData) {
+        setFormValue(storedData);
+      }
+    },[setFormValue]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
